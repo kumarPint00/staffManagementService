@@ -1,0 +1,154 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              Int      @id @default(autoincrement())
+  attendances         Attendance[]
+  dismissals          Dismissal[]
+  deliveries          Delivery[]
+  collections         Collection[]
+  maintenanceDeliveries MaintenanceDelivery[]
+  maintenanceCollections MaintenanceCollection[]
+  vehicleRegistrations VehicleRegistration[]
+  email           String   @unique
+  name            String?
+  password        String
+  role            Role     @default(USER)
+  isEmailVerified Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  Token           Token[]
+}
+
+model Token {
+  id          Int       @id @default(autoincrement())
+  token       String
+  type        TokenType
+  expires     DateTime
+  blacklisted Boolean
+  createdAt   DateTime  @default(now())
+  user        User      @relation(fields: [userId], references: [id])
+  userId      Int
+}
+
+enum Role {
+  USER
+  ADMIN
+  DRIVER
+}
+
+enum TokenType {
+  ACCESS
+  REFRESH
+  RESET_PASSWORD
+  VERIFY_EMAIL
+}
+
+
+model Attendance {
+  id           Int      @id @default(autoincrement())
+  user         User     @relation(fields: [userId], references: [id])
+  userId       Int
+  date         DateTime
+  checkIn      DateTime
+  checkInLat   Float
+  checkInLng   Float
+  checkOut     DateTime?
+  checkOutLat  Float?
+  checkOutLng  Float?
+}
+
+model Dismissal {
+  id             Int      @id @default(autoincrement())
+  user           User     @relation(fields: [userId], references: [id])
+  userId         Int
+  date           DateTime
+  dismissalTime  DateTime
+  lat            Float
+  lng            Float
+}
+
+model Delivery {
+  id            Int      @id @default(autoincrement())
+  user          User     @relation(fields: [userId], references: [id])
+  userId        Int
+  customerName  String
+  mobileNo      String
+  carPlateNo    String
+  deliveryLat   Float
+  deliveryLng   Float
+  source        BookingSource
+  startTime     DateTime
+  endTime       DateTime?
+}
+
+model Collection {
+  id            Int      @id @default(autoincrement())
+  user          User     @relation(fields: [userId], references: [id])
+  userId        Int
+  customerName  String
+  mobileNo      String
+  carPlateNo    String
+  collectionLat Float
+  collectionLng Float
+  source        BookingSource
+  startTime     DateTime
+  endTime       DateTime?
+}
+
+model MaintenanceDelivery {
+  id              Int      @id @default(autoincrement())
+  user            User     @relation(fields: [userId], references: [id])
+  userId          Int
+  carPlateNo      String
+  carIssue        String
+  startTime       DateTime
+  endTime         DateTime?
+  workInProgress  DateTime?
+  workshopName    String
+  contactPerson   String
+  workshopLat     Float
+  workshopLng     Float
+}
+
+model MaintenanceCollection {
+  id             Int      @id @default(autoincrement())
+  user           User     @relation(fields: [userId], references: [id])
+  userId         Int
+  carPlateNo     String
+  carIssue       String
+  workshopLat    Float
+  workshopLng    Float
+  acceptTime     DateTime
+  startTime      DateTime
+  endTime        DateTime
+}
+
+model VehicleRegistration {
+  id             Int      @id @default(autoincrement())
+  user           User     @relation(fields: [userId], references: [id])
+  userId         Int
+  carPlateNo     String
+  acceptTime     DateTime
+  startTime      DateTime
+  progressTime   DateTime?
+  endTime        DateTime?
+  finishTime     DateTime?
+}
+
+
+enum BookingSource {
+  INJAZ
+  LOGIC
+  invygo
+  EZHIRE
+}
