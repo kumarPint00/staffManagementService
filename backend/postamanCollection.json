@@ -1,0 +1,936 @@
+{
+  "info": {
+    "name": "Staff Management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"Password123\",\n  \"name\": \"John Doe\",\n  \"role\": \"USER\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/users",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "users"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/users",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "users"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get User by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/users/:userId",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "users",
+                ":userId"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Updated\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/users/:userId",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "users",
+                ":userId"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/users/:userId",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "users",
+                ":userId"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Attendance",
+      "item": [
+        {
+          "name": "Create Attendance",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": 1,\n  \"date\": \"2024-06-18T08:30:00.000Z\",\n  \"checkIn\": \"2024-06-18T08:30:00.000Z\",\n  \"checkInLat\": 37.7749,\n  \"checkInLng\": -122.4194\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/attendances",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "attendances"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Attendances",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/attendances",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "attendances"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Attendance by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/attendances/:attendanceId",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "attendances",
+                ":attendanceId"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Attendance",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"checkOut\": \"2024-06-18T17:30:00.000Z\",\n  \"checkOutLat\": 37.7749,\n  \"checkOutLng\": -122.4194\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/attendances/:attendanceId",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "attendances",
+                ":attendanceId"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Attendance",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/attendances/:attendanceId",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "attendances",
+                ":attendanceId"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Dismissal",
+      "item": [
+        {
+          "name": "Create Dismissal",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": 1,\n  \"date\": \"2024-06-18T17:30:00.000Z\",\n  \"dismissalTime\": \"2024-06-18T17:30:00.000Z\",\n  \"lat\": 37.7749,\n  \"lng\": -122.4194\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/dismissals",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "dismissals"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Dismissals",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/dismissals",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "dismissals"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Dismissal by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/dismissals/:dismissalId",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "dismissals",
+                ":dismissalId"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Dismissal",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dismissalTime\": \"2024-06-18T18:00:00.000Z\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/dismissals/:dismissalId",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "dismissals",
+                ":dismissalId"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Dismissal",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/dismissals/:dismissalId",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "dismissals",
+                ":dismissalId"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Delivery",
+      "item": [
+        {
+          "name": "Create Delivery",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": 1,\n  \"date\": \"2024-06-18T09:00:00.000Z\",\n  \"deliveryTime\": \"2024-06-18T09:00:00.000Z\",\n  \"lat\": 37.7749,\n  \"lng\": -122.4194\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/deliveries",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "deliveries"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Deliveries",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/deliveries",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "deliveries"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Delivery by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/deliveries/:deliveryId",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "deliveries",
+                ":deliveryId"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Delivery",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"deliveryTime\": \"2024-06-18T09:30:00.000Z\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/deliveries/:deliveryId",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "deliveries",
+                ":deliveryId"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Delivery",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/deliveries/:deliveryId",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "deliveries",
+                ":deliveryId"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Collection",
+      "item": [
+        {
+          "name": "Create Collection",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": 1,\n  \"date\": \"2024-06-18T10:00:00.000Z\",\n  \"collectionTime\": \"2024-06-18T10:00:00.000Z\",\n  \"lat\": 37.7749,\n  \"lng\": -122.4194\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/collections",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "collections"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Collections",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/collections",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "collections"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Collection by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/collections/:collectionId",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "collections",
+                ":collectionId"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Collection",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"collectionTime\": \"2024-06-18T10:30:00.000Z\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/collections/:collectionId",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "collections",
+                ":collectionId"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Collection",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/collections/:collectionId",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "collections",
+                ":collectionId"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Maintenance Delivery",
+      "item": [
+        {
+          "name": "Create Maintenance Delivery",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": 1,\n  \"date\": \"2024-06-18T11:00:00.000Z\",\n  \"maintenanceDeliveryTime\": \"2024-06-18T11:00:00.000Z\",\n  \"lat\": 37.7749,\n  \"lng\": -122.4194\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/maintenanceDeliveries",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "maintenanceDeliveries"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Maintenance Deliveries",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/maintenanceDeliveries",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "maintenanceDeliveries"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Maintenance Delivery by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/maintenanceDeliveries/:maintenanceDeliveryId",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "maintenanceDeliveries",
+                ":maintenanceDeliveryId"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Maintenance Delivery",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"maintenanceDeliveryTime\": \"2024-06-18T11:30:00.000Z\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/maintenanceDeliveries/:maintenanceDeliveryId",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "maintenanceDeliveries",
+                ":maintenanceDeliveryId"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Maintenance Delivery",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/maintenanceDeliveries/:maintenanceDeliveryId",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "maintenanceDeliveries",
+                ":maintenanceDeliveryId"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Maintenance Collection",
+      "item": [
+        {
+          "name": "Create Maintenance Collection",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": 1,\n  \"date\": \"2024-06-18T12:00:00.000Z\",\n  \"maintenanceCollectionTime\": \"2024-06-18T12:00:00.000Z\",\n  \"lat\": 37.7749,\n  \"lng\": -122.4194\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/maintenanceCollections",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "maintenanceCollections"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Maintenance Collections",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/maintenanceCollections",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "maintenanceCollections"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Maintenance Collection by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/maintenanceCollections/:maintenanceCollectionId",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "maintenanceCollections",
+                ":maintenanceCollectionId"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Maintenance Collection",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"maintenanceCollectionTime\": \"2024-06-18T12:30:00.000Z\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/maintenanceCollections/:maintenanceCollectionId",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "maintenanceCollections",
+                ":maintenanceCollectionId"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Maintenance Collection",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/maintenanceCollections/:maintenanceCollectionId",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "maintenanceCollections",
+                ":maintenanceCollectionId"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Vehicle Registration",
+      "item": [
+        {
+          "name": "Create Vehicle Registration",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"registrationNumber\": \"ABC1234\",\n  \"ownerId\": 1,\n  \"make\": \"Toyota\",\n  \"model\": \"Corolla\",\n  \"year\": 2020\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/vehicleRegistrations",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "vehicleRegistrations"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Vehicle Registrations",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/vehicleRegistrations",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "vehicleRegistrations"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Vehicle Registration by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/vehicleRegistrations/:vehicleRegistrationId",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "vehicleRegistrations",
+                ":vehicleRegistrationId"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Vehicle Registration",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"make\": \"Honda\",\n  \"model\": \"Civic\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/vehicleRegistrations/:vehicleRegistrationId",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "vehicleRegistrations",
+                ":vehicleRegistrationId"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Vehicle Registration",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/vehicleRegistrations/:vehicleRegistrationId",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "vehicleRegistrations",
+                ":vehicleRegistrationId"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,38 +1,43 @@
+import { Request, Response } from 'express';
 import httpStatus from 'http-status';
-import pick from '../utils/pick';
-import ApiError from '../utils/ApiError';
-import catchAsync from '../utils/catchAsync';
-import { vehicleRegistrationService } from '../services';
+import vehicleRegistrationService from '../services/vehicleRegistration.service';
 
-const createVehicleRegistration = catchAsync(async (req, res) => {
+const createVehicleRegistration = async (req: Request, res: Response) => {
   const vehicleRegistration = await vehicleRegistrationService.createVehicleRegistration(req.body);
   res.status(httpStatus.CREATED).send(vehicleRegistration);
-});
+};
 
-const getVehicleRegistrations = catchAsync(async (req, res) => {
-  const filter = pick(req.query, ['userId', 'vehicleNumber', 'registrationStatus']);
-  const options = pick(req.query, ['sortBy', 'limit', 'page']);
-  const result = await vehicleRegistrationService.queryVehicleRegistrations(filter, options);
+const getVehicleRegistrations = async (req: Request, res: Response) => {
+  const filter = req.query;
+  const options = {
+    limit: parseInt(req.query.limit as string, 10) || 10,
+    page: parseInt(req.query.page as string, 10) || 1,
+  };
+  const result = await vehicleRegistrationService.getVehicleRegistrations(filter, options);
   res.send(result);
-});
+};
 
-const getVehicleRegistration = catchAsync(async (req, res) => {
-  const vehicleRegistration = await vehicleRegistrationService.getVehicleRegistrationById(req.params.vehicleRegistrationId);
+const getVehicleRegistration = async (req: Request, res: Response) => {
+  const vehicleRegistrationId = parseInt(req.params.vehicleRegistrationId, 10);
+  const vehicleRegistration = await vehicleRegistrationService.getVehicleRegistration(vehicleRegistrationId);
   if (!vehicleRegistration) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Vehicle registration not found');
+    res.status(httpStatus.NOT_FOUND).send({ message: 'Vehicle Registration not found' });
+  } else {
+    res.send(vehicleRegistration);
   }
-  res.send(vehicleRegistration);
-});
+};
 
-const updateVehicleRegistration = catchAsync(async (req, res) => {
-  const vehicleRegistration = await vehicleRegistrationService.updateVehicleRegistrationById(req.params.vehicleRegistrationId, req.body);
+const updateVehicleRegistration = async (req: Request, res: Response) => {
+  const vehicleRegistrationId = parseInt(req.params.vehicleRegistrationId, 10);
+  const vehicleRegistration = await vehicleRegistrationService.updateVehicleRegistration(vehicleRegistrationId, req.body);
   res.send(vehicleRegistration);
-});
+};
 
-const deleteVehicleRegistration = catchAsync(async (req, res) => {
-  await vehicleRegistrationService.deleteVehicleRegistrationById(req.params.vehicleRegistrationId);
+const deleteVehicleRegistration = async (req: Request, res: Response) => {
+  const vehicleRegistrationId = parseInt(req.params.vehicleRegistrationId, 10);
+  await vehicleRegistrationService.deleteVehicleRegistration(vehicleRegistrationId);
   res.status(httpStatus.NO_CONTENT).send();
-});
+};
 
 export default {
   createVehicleRegistration,

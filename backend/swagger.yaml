@@ -1,0 +1,658 @@
+openapi: 3.0.1
+info:
+  title: Staff Management API
+  description: API documentation for the Staff Management application.
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+paths:
+  /users:
+    post:
+      summary: Create a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                role:
+                  type: string
+              required:
+                - name
+                - email
+                - role
+      responses:
+        '201':
+          description: Created
+    get:
+      summary: Get all users
+      responses:
+        '200':
+          description: OK
+  /users/{userId}:
+    get:
+      summary: Get user by ID
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+    put:
+      summary: Update user by ID
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                role:
+                  type: string
+      responses:
+        '200':
+          description: OK
+    delete:
+      summary: Delete user by ID
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: No Content
+  /dismissals:
+    post:
+      summary: Create a new dismissal
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: integer
+                date:
+                  type: string
+                  format: date-time
+              required:
+                - userId
+                - date
+      responses:
+        '201':
+          description: Created
+    get:
+      summary: Get all dismissals
+      responses:
+        '200':
+          description: OK
+  /dismissals/{dismissalId}:
+    get:
+      summary: Get dismissal by ID
+      parameters:
+        - name: dismissalId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+    put:
+      summary: Update dismissal by ID
+      parameters:
+        - name: dismissalId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                date:
+                  type: string
+                  format: date-time
+      responses:
+        '200':
+          description: OK
+    delete:
+      summary: Delete dismissal by ID
+      parameters:
+        - name: dismissalId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: No Content
+  /deliveries:
+    post:
+      summary: Create a new delivery
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: integer
+                date:
+                  type: string
+                  format: date-time
+                deliveryTime:
+                  type: string
+                  format: date-time
+                lat:
+                  type: number
+                lng:
+                  type: number
+              required:
+                - userId
+                - date
+                - deliveryTime
+                - lat
+                - lng
+      responses:
+        '201':
+          description: Created
+    get:
+      summary: Get all deliveries
+      responses:
+        '200':
+          description: OK
+  /deliveries/{deliveryId}:
+    get:
+      summary: Get delivery by ID
+      parameters:
+        - name: deliveryId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+    put:
+      summary: Update delivery by ID
+      parameters:
+        - name: deliveryId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                deliveryTime:
+                  type: string
+                  format: date-time
+      responses:
+        '200':
+          description: OK
+    delete:
+      summary: Delete delivery by ID
+      parameters:
+        - name: deliveryId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: No Content
+  /collections:
+    post:
+      summary: Create a new collection
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: integer
+                date:
+                  type: string
+                  format: date-time
+                collectionTime:
+                  type: string
+                  format: date-time
+                lat:
+                  type: number
+                lng:
+                  type: number
+              required:
+                - userId
+                - date
+                - collectionTime
+                - lat
+                - lng
+      responses:
+        '201':
+          description: Created
+    get:
+      summary: Get all collections
+      responses:
+        '200':
+          description: OK
+  /collections/{collectionId}:
+    get:
+      summary: Get collection by ID
+      parameters:
+        - name: collectionId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+    put:
+      summary: Update collection by ID
+      parameters:
+        - name: collectionId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                collectionTime:
+                  type: string
+                  format: date-time
+      responses:
+        '200':
+          description: OK
+    delete:
+      summary: Delete collection by ID
+      parameters:
+        - name: collectionId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: No Content
+  /maintenanceDeliveries:
+    post:
+      summary: Create a new maintenance delivery
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: integer
+                date:
+                  type: string
+                  format: date-time
+                maintenanceDeliveryTime:
+                  type: string
+                  format: date-time
+                lat:
+                  type: number
+                lng:
+                  type: number
+              required:
+                - userId
+                - date
+                - maintenanceDeliveryTime
+                - lat
+                - lng
+      responses:
+        '201':
+          description: Created
+    get:
+      summary: Get all maintenance deliveries
+      responses:
+        '200':
+          description: OK
+  /maintenanceDeliveries/{maintenanceDeliveryId}:
+    get:
+      summary: Get maintenance delivery by ID
+      parameters:
+        - name: maintenanceDeliveryId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+    put:
+      summary: Update maintenance delivery by ID
+      parameters:
+        - name: maintenanceDeliveryId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                maintenanceDeliveryTime:
+                  type: string
+                  format: date-time
+      responses:
+        '200':
+          description: OK
+    delete:
+      summary: Delete maintenance delivery by ID
+      parameters:
+        - name: maintenanceDeliveryId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: No Content
+  /maintenanceCollections:
+    post:
+      summary: Create a new maintenance collection
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: integer
+                date:
+                  type: string
+                  format: date-time
+                maintenanceCollectionTime:
+                  type: string
+                  format: date-time
+                lat:
+                  type: number
+                lng:
+                  type: number
+              required:
+                - userId
+                - date
+                - maintenanceCollectionTime
+                - lat
+                - lng
+      responses:
+        '201':
+          description: Created
+    get:
+      summary: Get all maintenance collections
+      responses:
+        '200':
+          description: OK
+  /maintenanceCollections/{maintenanceCollectionId}:
+    get:
+      summary: Get maintenance collection by ID
+      parameters:
+        - name: maintenanceCollectionId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+    put:
+      summary: Update maintenance collection by ID
+      parameters:
+        - name: maintenanceCollectionId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                maintenanceCollectionTime:
+                  type: string
+                  format: date-time
+      responses:
+        '200':
+          description: OK
+    delete:
+      summary: Delete maintenance collection by ID
+      parameters:
+        - name: maintenanceCollectionId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: No Content
+  /vehicleRegistrations:
+    post:
+      summary: Create a new vehicle registration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                registrationNumber:
+                  type: string
+                ownerId:
+                  type: integer
+                make:
+                  type: string
+                model:
+                  type: string
+                year:
+                  type: integer
+              required:
+                - registrationNumber
+                - ownerId
+                - make
+                - model
+                - year
+      responses:
+        '201':
+          description: Created
+    get:
+      summary: Get all vehicle registrations
+      responses:
+        '200':
+          description: OK
+  /vehicleRegistrations/{vehicleRegistrationId}:
+    get:
+      summary: Get vehicle registration by ID
+      parameters:
+        - name: vehicleRegistrationId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+    put:
+      summary: Update vehicle registration by ID
+      parameters:
+        - name: vehicleRegistrationId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                make:
+                  type: string
+                model:
+                  type: string
+      responses:
+        '200':
+          description: OK
+    delete:
+      summary: Delete vehicle registration by ID
+      parameters:
+        - name: vehicleRegistrationId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: No Content
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
+        role:
+          type: string
+    Dismissal:
+      type: object
+      properties:
+        id:
+          type: integer
+        userId:
+          type: integer
+        date:
+          type: string
+          format: date-time
+    Delivery:
+      type: object
+      properties:
+        id:
+          type: integer
+        userId:
+          type: integer
+        date:
+          type: string
+          format: date-time
+        deliveryTime:
+          type: string
+          format: date-time
+        lat:
+          type: number
+        lng:
+          type: number
+    Collection:
+      type: object
+      properties:
+        id:
+          type: integer
+        userId:
+          type: integer
+        date:
+          type: string
+          format: date-time
+        collectionTime:
+          type: string
+          format: date-time
+        lat:
+          type: number
+        lng:
+          type: number
+    MaintenanceDelivery:
+      type: object
+      properties:
+        id:
+          type: integer
+        userId:
+          type: integer
+        date:
+          type: string
+          format: date-time
+        maintenanceDeliveryTime:
+          type: string
+          format: date-time
+        lat:
+          type: number
+        lng:
+          type: number
+    MaintenanceCollection:
+      type: object
+      properties:
+        id:
+          type: integer
+        userId:
+          type: integer
+        date:
+          type: string
+          format: date-time
+        maintenanceCollectionTime:
+          type: string
+          format: date-time
+        lat:
+          type: number
+        lng:
+          type: number
+    VehicleRegistration:
+      type: object
+      properties:
+        id:
+          type: integer
+        registrationNumber:
+          type: string
+        ownerId:
+          type: integer
+        make:
+          type: string
+        model:
+          type: string
+        year:
+          type: integer

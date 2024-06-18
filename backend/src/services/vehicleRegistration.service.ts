@@ -1,49 +1,38 @@
-import Joi from 'joi';
+import { PrismaClient, Prisma } from '@prisma/client';
+const prisma = new PrismaClient();
 
-const createVehicleRegistration = {
-  body: Joi.object().keys({
-    userId: Joi.number().required(),
-    vehicleNumber: Joi.string().required(),
-    registrationStatus: Joi.string().required(),
-    registrationDate: Joi.date().required(),
-    expiryDate: Joi.date().required(),
-  }),
+const createVehicleRegistration = async (data: Prisma.VehicleRegistrationCreateInput) => {
+  return prisma.vehicleRegistration.create({
+    data,
+  });
 };
 
-const getVehicleRegistrations = {
-  query: Joi.object().keys({
-    userId: Joi.number().integer(),
-    vehicleNumber: Joi.string(),
-    registrationStatus: Joi.string(),
-    sortBy: Joi.string(),
-    limit: Joi.number().integer(),
-    page: Joi.number().integer(),
-  }),
+const getVehicleRegistrations = async (filter: any, options: any) => {
+  const { limit, page } = options;
+  return prisma.vehicleRegistration.findMany({
+    where: filter,
+    take: limit,
+    skip: (page - 1) * limit,
+  });
 };
 
-const getVehicleRegistration = {
-  params: Joi.object().keys({
-    vehicleRegistrationId: Joi.number().integer(),
-  }),
+const getVehicleRegistration = async (vehicleRegistrationId: number) => {
+  return prisma.vehicleRegistration.findUnique({
+    where: { id: vehicleRegistrationId },
+  });
 };
 
-const updateVehicleRegistration = {
-  params: Joi.object().keys({
-    vehicleRegistrationId: Joi.number().integer(),
-  }),
-  body: Joi.object().keys({
-    userId: Joi.number().optional(),
-    vehicleNumber: Joi.string().optional(),
-    registrationStatus: Joi.string().optional(),
-    registrationDate: Joi.date().optional(),
-    expiryDate: Joi.date().optional(),
-  }),
+const updateVehicleRegistration = async (vehicleRegistrationId: number, data: Prisma.VehicleRegistrationUpdateInput) => {
+  return prisma.vehicleRegistration.update({
+    where: { id: vehicleRegistrationId },
+    data,
+  });
 };
 
-const deleteVehicleRegistration = {
-  params: Joi.object().keys({
-    vehicleRegistrationId: Joi.number().integer(),
-  }),
+const deleteVehicleRegistration = async (vehicleRegistrationId: number) => {
+  return prisma.vehicleRegistration.delete({
+    where: { id: vehicleRegistrationId },
+  });
 };
 
 export default {
